@@ -35,11 +35,29 @@ public class Main {
             System.out.println();
         }
 
-        System.out.println("Enter a row number: ");
+        System.out.print("Enter a row number: ");
         int chosenRow = scanner.nextInt();
 
-        System.out.println("Enter a seat number in that row: ");
+        System.out.print("Enter a seat number in that row: ");
         int chosenSeat = scanner.nextInt();
+
+        int ticketPrice = 0;
+        int numOfSeats = rows * seats;
+
+        // Determine ticket price
+        if (numOfSeats >= 60 && rows % 2 != 0) {
+            int frontRows = (rows-1) / 2;
+            int backRows = (rows+1) / 2;
+            ticketPrice = (chosenRow <= frontRows) ? 10 : 8;
+        } else if (numOfSeats >= 60) {
+            int frontRows = rows / 2;
+            int backRows = rows / 2;
+            ticketPrice = (chosenRow <= frontRows) ? 10 : 8;
+        } else {
+            ticketPrice = 10;
+        }
+
+        System.out.println("Ticket price: $"+ ticketPrice);
 
         // Change that number in array
         cinema[chosenRow-1][chosenSeat-1] = 'B';
@@ -59,23 +77,6 @@ public class Main {
             System.out.println();
         }
 
-        /*int income;
-        int numOfSeats = rows * seats;
 
-        // Determine ticket price
-        if (numOfSeats >= 60 && rows % 2 != 0) {
-            int frontRows = (rows-1) / 2;
-            int backRows = (rows+1) / 2;
-            income = ((frontRows * seats) * 10) + ((backRows * seats) * 8);
-        } else if (numOfSeats >= 60) {
-            int frontRows = rows / 2;
-            int backRows = rows / 2;
-            income = ((frontRows * seats) * 10) + ((backRows * seats) * 8);
-        } else {
-            income = numOfSeats * 10;
-        }
-
-        System.out.println("Total income:");
-        System.out.printf("$%d", income);*/
     }
 }
