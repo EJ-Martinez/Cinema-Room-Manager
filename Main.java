@@ -3,33 +3,63 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("""
-                Cinema:
-                  1 2 3 4 5 6 7 8
-                1 S S S S S S S S
-                2 S S S S S S S S
-                3 S S S S S S S S
-                4 S S S S S S S S
-                5 S S S S S S S S
-                6 S S S S S S S S
-                7 S S S S S S S S""");
 
-        // Get num of rows
-        System.out.println("Enter the number of rows:");
+        // Get the number of rows and seats per row from the user
+        System.out.print("Enter the number of rows: ");
         int rows = scanner.nextInt();
-
-        // Get number of seats in each row
-        System.out.println("Enter the number of seats in each row");
+        System.out.print("Enter the number of seats in each row: ");
         int seats = scanner.nextInt();
 
-        /*
-         * If the total number of seats in the screen room is not more than 60, then the price of each ticket is 10 dollars.
-         * In a larger room, the tickets are 10 dollars for the front half of the rows and 8 dollars for the back half.
-         * Please note that the number of rows can be odd, for example, 9 rows. In this case,
-         * the first half is the first 4 rows, and the second half is the other 5 rows
-         */
+        // Create the cinema seating arrangement
+        char[][] cinema = new char[rows][seats];
 
-        int income;
+        // Initialize all seats as 'S' (available)
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < seats; j++) {
+                cinema[i][j] = 'S';
+            }
+        }
+
+        System.out.println("Cinema:");
+        System.out.print("  "); // For column numbers
+        for (int i = 1; i <= seats; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < rows; i++) {
+            System.out.print((i + 1) + " "); // Row numbers
+            for (int j = 0; j < seats; j++) {
+                System.out.print(cinema[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println("Enter a row number: ");
+        int chosenRow = scanner.nextInt();
+
+        System.out.println("Enter a seat number in that row: ");
+        int chosenSeat = scanner.nextInt();
+
+        // Change that number in array
+        cinema[chosenRow-1][chosenSeat-1] = 'B';
+
+        System.out.println("Cinema:");
+        System.out.print("  "); // For column numbers
+        for (int i = 1; i <= seats; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < rows; i++) {
+            System.out.print((i + 1) + " "); // Row numbers
+            for (int j = 0; j < seats; j++) {
+                System.out.print(cinema[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        /*int income;
         int numOfSeats = rows * seats;
 
         // Determine ticket price
@@ -46,7 +76,6 @@ public class Main {
         }
 
         System.out.println("Total income:");
-        System.out.printf("$%d", income);
-
+        System.out.printf("$%d", income);*/
     }
 }
