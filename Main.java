@@ -10,6 +10,23 @@ public class Main {
         }
     }
 
+    public static void displayCinema(char[][] cinema, int rows, int seats) {
+        System.out.println("Cinema:");
+        System.out.print("  "); // For column numbers
+        for (int i = 1; i <= seats; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < rows; i++) {
+            System.out.print((i + 1) + " "); // Row numbers
+            for (int j = 0; j < seats; j++) {
+                System.out.print(cinema[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,22 +42,11 @@ public class Main {
 
         // Initialize all spots as S in cinema
         initializeArray(cinema);
+        // Display cinema
+        displayCinema(cinema, rows, seats);
 
 
-        System.out.println("Cinema:");
-        System.out.print("  "); // For column numbers
-        for (int i = 1; i <= seats; i++) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
 
-        for (int i = 0; i < rows; i++) {
-            System.out.print((i + 1) + " "); // Row numbers
-            for (int j = 0; j < seats; j++) {
-                System.out.print(cinema[i][j] + " ");
-            }
-            System.out.println();
-        }
 
         System.out.print("Enter a row number: ");
         int chosenRow = scanner.nextInt();
