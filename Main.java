@@ -59,26 +59,46 @@ public class Main {
 
         // Create the cinema seating arrangement
         char[][] cinema = new char[rows][seats];
-
         // Initialize all spots as S in cinema
         initializeArray(cinema);
-        // Display cinema
-        displayCinema(cinema, rows, seats);
 
-        System.out.print("Enter a row number: ");
-        int chosenRow = scanner.nextInt();
+        // Display menu
+        System.out.println("""
+                
+                1. Show the seats
+                2. Buy a ticket
+                0. Exit""");
+        int menuChoice = scanner.nextInt();
 
-        System.out.print("Enter a seat number in that row: ");
-        int chosenSeat = scanner.nextInt();
+        while(menuChoice != 0) {
 
-        // Change that number in array
-        cinema[chosenRow-1][chosenSeat-1] = 'B';
 
-        // display ticket price
-        determineTicketPrice(cinema, rows, seats, chosenRow, chosenSeat);
+            switch (menuChoice) {
+                case 1:
+                    // Display cinema
+                    displayCinema(cinema, rows, seats);
+                    break;
 
-        // display cinema
-        displayCinema(cinema, rows, seats);
+                case 2:
+                    System.out.print("Enter a row number: ");
+                    int chosenRow = scanner.nextInt();
+
+                    System.out.print("Enter a seat number in that row: ");
+                    int chosenSeat = scanner.nextInt();
+                    // display ticket price
+                    determineTicketPrice(cinema, rows, seats, chosenRow, chosenSeat);
+
+                    // Change that number in array
+                    cinema[chosenRow-1][chosenSeat-1] = 'B';
+                    break;
+            }
+            System.out.println("""
+                
+                1. Show the seats
+                2. Buy a ticket
+                0. Exit""");
+            menuChoice = scanner.nextInt();
+        }
 
 
     }
