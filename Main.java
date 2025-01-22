@@ -1,6 +1,16 @@
 import java.util.Scanner;
 
 public class Main {
+    public static void initializeArray(char[][] cinema) {
+        // Initialize all seats as 'S' (available)
+        for (int i = 0; i < cinema.length; i++) {
+            for (int j = 0; j < cinema[i].length; j++) {
+                cinema[i][j] = 'S';
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -13,12 +23,9 @@ public class Main {
         // Create the cinema seating arrangement
         char[][] cinema = new char[rows][seats];
 
-        // Initialize all seats as 'S' (available)
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < seats; j++) {
-                cinema[i][j] = 'S';
-            }
-        }
+        // Initialize all spots as S in cinema
+        initializeArray(cinema);
+
 
         System.out.println("Cinema:");
         System.out.print("  "); // For column numbers
