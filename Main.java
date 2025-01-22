@@ -27,6 +27,26 @@ public class Main {
         }
     }
 
+    public static void determineTicketPrice(char[][] cinema, int rows, int seats, int chosenRow, int chosenSeat) {
+        int ticketPrice = 0;
+        int numOfSeats = rows * seats;
+
+        // Determine ticket price
+        if (numOfSeats >= 60 && rows % 2 != 0) {
+            int frontRows = (rows-1) / 2;
+            int backRows = (rows+1) / 2;
+            ticketPrice = (chosenRow <= frontRows) ? 10 : 8;
+        } else if (numOfSeats >= 60) {
+            int frontRows = rows / 2;
+            int backRows = rows / 2;
+            ticketPrice = (chosenRow <= frontRows) ? 10 : 8;
+        } else {
+            ticketPrice = 10;
+        }
+
+        System.out.println("Ticket price: $"+ ticketPrice);
+    }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -45,50 +65,20 @@ public class Main {
         // Display cinema
         displayCinema(cinema, rows, seats);
 
-
-
-
         System.out.print("Enter a row number: ");
         int chosenRow = scanner.nextInt();
 
         System.out.print("Enter a seat number in that row: ");
         int chosenSeat = scanner.nextInt();
 
-        int ticketPrice = 0;
-        int numOfSeats = rows * seats;
-
-        // Determine ticket price
-        if (numOfSeats >= 60 && rows % 2 != 0) {
-            int frontRows = (rows-1) / 2;
-            int backRows = (rows+1) / 2;
-            ticketPrice = (chosenRow <= frontRows) ? 10 : 8;
-        } else if (numOfSeats >= 60) {
-            int frontRows = rows / 2;
-            int backRows = rows / 2;
-            ticketPrice = (chosenRow <= frontRows) ? 10 : 8;
-        } else {
-            ticketPrice = 10;
-        }
-
-        System.out.println("Ticket price: $"+ ticketPrice);
-
         // Change that number in array
         cinema[chosenRow-1][chosenSeat-1] = 'B';
 
-        System.out.println("Cinema:");
-        System.out.print("  "); // For column numbers
-        for (int i = 1; i <= seats; i++) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
+        // display ticket price
+        determineTicketPrice(cinema, rows, seats, chosenRow, chosenSeat);
 
-        for (int i = 0; i < rows; i++) {
-            System.out.print((i + 1) + " "); // Row numbers
-            for (int j = 0; j < seats; j++) {
-                System.out.print(cinema[i][j] + " ");
-            }
-            System.out.println();
-        }
+        // display cinema
+        displayCinema(cinema, rows, seats);
 
 
     }
