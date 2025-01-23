@@ -27,18 +27,16 @@ public class Main {
         }
     }
 
-    public static void determineTicketPrice(char[][] cinema, int rows, int seats, int chosenRow, int chosenSeat) {
+    public static void determineTicketPrice( int rows, int seats, int chosenRow) {
         int ticketPrice = 0;
         int numOfSeats = rows * seats;
 
         // Determine ticket price
         if (numOfSeats >= 60 && rows % 2 != 0) {
             int frontRows = (rows-1) / 2;
-            int backRows = (rows+1) / 2;
             ticketPrice = (chosenRow <= frontRows) ? 10 : 8;
         } else if (numOfSeats >= 60) {
             int frontRows = rows / 2;
-            int backRows = rows / 2;
             ticketPrice = (chosenRow <= frontRows) ? 10 : 8;
         } else {
             ticketPrice = 10;
@@ -46,7 +44,6 @@ public class Main {
 
         System.out.println("Ticket price: $"+ ticketPrice);
     }
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -71,8 +68,6 @@ public class Main {
         int menuChoice = scanner.nextInt();
 
         while(menuChoice != 0) {
-
-
             switch (menuChoice) {
                 case 1:
                     // Display cinema
@@ -86,7 +81,7 @@ public class Main {
                     System.out.print("Enter a seat number in that row: ");
                     int chosenSeat = scanner.nextInt();
                     // display ticket price
-                    determineTicketPrice(cinema, rows, seats, chosenRow, chosenSeat);
+                    determineTicketPrice(rows, seats, chosenRow);
 
                     // Change that number in array
                     cinema[chosenRow-1][chosenSeat-1] = 'B';
