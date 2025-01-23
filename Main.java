@@ -45,6 +45,16 @@ public class Main {
         System.out.println("Ticket price: $"+ ticketPrice);
     }
 
+    public static boolean seatTaken(char[][] cinema, int chosenRow, int chosenSeat, int rows, int seats) {
+        if (cinema[chosenRow][chosenSeat] == 'B') {
+            System.out.println("That seat is taken");
+            return true;
+        }
+        // display ticket price
+        determineTicketPrice(rows, seats, chosenRow);
+        return false;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -75,16 +85,20 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.print("Enter a row number: ");
-                    int chosenRow = scanner.nextInt();
+                    boolean seatTaken;
+                    do {
+                        System.out.print("Enter a row number: ");
+                        int chosenRow = scanner.nextInt();
 
-                    System.out.print("Enter a seat number in that row: ");
-                    int chosenSeat = scanner.nextInt();
-                    // display ticket price
-                    determineTicketPrice(rows, seats, chosenRow);
+                        System.out.print("Enter a seat number in that row: ");
+                        int chosenSeat = scanner.nextInt();
 
-                    // Change that number in array
-                    cinema[chosenRow-1][chosenSeat-1] = 'B';
+                        // Validate seat
+                        seatTaken = seatTaken(cinema, chosenRow, chosenSeat, rows, seats);
+                        // Change that number in array
+                        cinema[chosenRow][chosenSeat] = 'B';
+                    } while (seatTaken);
+
                     break;
             }
             System.out.println("""
