@@ -88,10 +88,10 @@ public class Main {
                     boolean seatTaken;
                     do {
                         System.out.print("Enter a row number: ");
-                        int chosenRow = scanner.nextInt();
+                        int chosenRow = scanner.nextInt() - 1;
 
                         System.out.print("Enter a seat number in that row: ");
-                        int chosenSeat = scanner.nextInt();
+                        int chosenSeat = scanner.nextInt() - 1;
 
                         // Validate seat
                         seatTaken = seatTaken(cinema, chosenRow, chosenSeat, rows, seats);
